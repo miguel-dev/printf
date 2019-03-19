@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdarg.h>
+#include <string.h>
 
 /**
  * struct print - connects the format with the parameter.
@@ -15,12 +16,14 @@
 typedef struct print
 {
 	char *format;
-	void (*f) (va_list parameter);
+	int (*f)(va_list parameter);
 } print_p;
 
-void format_c(va_list parameter);
+int format_c(va_list parameter);
 
-void format_s(va_list parameter);
+int format_s(va_list parameter);
+
+int format_i(va_list parameter);
 
 int _printf(const char *format, ...);
 
