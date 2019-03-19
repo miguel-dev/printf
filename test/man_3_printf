@@ -1,0 +1,19 @@
+./" This is the manpage of _printf function
+.TH _printf "19/03/19" "VI" "_printf man page"
+
+.SH NAME
+_printf
+
+.SH DESCRIPTION
+This is our own printf function that performs in a very similar way to the printf function  of c.
+
+.SH OPTIONS
+.IP -
+option
+.IP --
+option2
+
+.SH SYNOPIS
+touchpad
+
+.SH AUTHOR

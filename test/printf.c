@@ -8,13 +8,13 @@
  */
 int format_c(va_list parameter)
 {
-	char * p;
+	int p;
 	int i = 0;
 
-	p = va_arg(parameter, char *);
+	p = va_arg(parameter, int);
 	while (p)
 	{
-		write(1, p, sizeof(char *));
+		write(1, &p, sizeof(char));
 		i++;
 	}
 	return(i);
@@ -74,7 +74,6 @@ int format_i(va_list parameter)
 int _printf(const char *format, ...)
 {
 	int i, j, n = 0;
-	char *copy;
 	va_list parameters;
 	print_p p[] = {
 		{"c", format_c},
@@ -83,28 +82,25 @@ int _printf(const char *format, ...)
 		{NULL, NULL}
 	};
 
-	copy = _strdup(format);
-
 	va_start(parameters, format);
 
 	i = 0;
 	j = 0;
-	while (copy && copy[i])
+	while (format && format[i])
 	{
-		if (copy[i] = '%')
+		if (format[i] == '%')
 		{
+			i++;
 			while (j < 3)
 			{
-				if (copy[i] == *p[j].format)
+				if (format[i] == *p[j].format)
 				{
 					p[i].f;
 				}
 				j++;
 			}
 		}
+		write(1, format[i], sizeof(char) * n);
 	}
 
-	if (!n)
-		write(1, copy
-, sizeof(char) * n);
 }
