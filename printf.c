@@ -8,10 +8,10 @@
  */
 int format_c(va_list parameter)
 {
-	char p;
+	char * p;
 	int i = 0;
 
-	p = va_arg(parameter, int);
+	p = va_arg(parameter, char *);
 	while (p)
 	{
 		write(1, p, sizeof(char));
