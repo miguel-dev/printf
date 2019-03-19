@@ -127,19 +127,15 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == 'c')
-			{
 				select_format_func(format);
-			}
 			else if (format[i + 1] == 's')
-			{
 				select_format_func(format);
-			}
+			else if (format[i + 1] == 'd')
+				select_format_func(format);
+			else if (format[i + 1] == 'i')
+				select_format_func(format);
 		}
 		i++;
 	}
-
-	if (!n)
-		write(1, format, sizeof(char) * n);
-
 	return (i);
 }
