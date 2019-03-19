@@ -18,9 +18,9 @@ typedef struct print
 	void (*f) (va_list parameter);
 } print_p;
 
-void format_c(va_list parameter);
+int format_c(va_list parameter);
 
-void format_s(va_list parameter);
+int format_s(va_list parameter);
 
 int _printf(const char *format, ...);
 
