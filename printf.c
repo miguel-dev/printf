@@ -9,7 +9,7 @@
 int format_c(va_list parameter)
 {
 	char p;
-	
+
 	p = va_arg(parameter, int);
 	write(1, &p, 1);
 	return (1);
@@ -46,26 +46,25 @@ int format_i(va_list parameter)
 {
 	long p;
 	char *a;
-	long i, j, v, size;
+	long i, j = 0, v = 0, size;
 
 	p = va_arg(parameter, int);
-
-	v = p;
 
 	if (p < 0)
 	{
 		p = p * (-1);
-		write(1, "-", sizeof(char));
+		j += write(1, "-", sizeof(char));
 	}
 
 	size = 0;
+	v = p;
 	while (v)
 	{
 		v /= 10;
 		size++;
 	}
 
-	a = malloc(sizeof(char) * size);
+	a = malloc(sizeof(char) * (size + 1));
 
 	i = 0;
 	v = p;
@@ -75,15 +74,15 @@ int format_i(va_list parameter)
 		v /= 10;
 		i++;
 	}
-
+	v = j;
 	j = i;
 	while (j >= 0)
 	{
-	  if (a[j] != '\0')
-	    write(1, &a[j], sizeof(char));
+		if (a[j] != '\0')
+			v += write(1, &a[j], sizeof(char));
 		j--;
 	}
-	return (i);
+	return (v);
 }
 
 /**
@@ -131,13 +130,14 @@ int _printf(const char *format, ...)
 	if (!format)
 		return (-1);
 
-	n = 0;
-
-	i = 0;
+	i = 0, n = 0;
 	while (format && format[i])
 	{
 		if (format[i] == '%')
 		{
+			if (!format[i + 1])
+				return (-1);
+
 			func = select_format_func(&format[i + 1]);
 			if (func)
 			{
@@ -146,19 +146,13 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				n += write(1, "%", sizeof(char*));
-				if (format[i + 1] != '%')
-					n += write(1, &format[i + 1], sizeof(char*));
-			}
-			if (!format[i + 1])
-			{
-				return (-1);
+				if (format[i + 1] == '%')
+					n += write(1, &format[i + 1], sizeof(char));
+				i++;
 			}
 		}
 		else
-		{
-			n += write(1, &format[i] , sizeof(char));
-		}
+			n += write(1, &format[i], sizeof(char));
 		i++;
 	}
 	return (n);
