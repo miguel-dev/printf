@@ -9,8 +9,10 @@
  */
 int main(void)
 {
-  /*int len;
-	unsigned int ui;
+	int len;
+	/*len = _printf("%s", "This sentence is retrieved from va_args!\n");
+	_printf("\n%i", len);*/
+  /*unsigned int ui;
 	void *addr;
 
 		len = _printf("Let's try to printf a simple sentence.\n");
@@ -18,13 +20,13 @@ int main(void)
 	addr = (void *)0x7ffe637541f0;
 	_printf("%%");
 	_printf("Length:[%d, %i]\n", len, len);*/
-  _printf("Negative:[%d]\n", -762534);
+  	len = _printf("%d\n", 1234);
 	/*	_printf("Unsigned:[%u]\n", ui);
 	_printf("Unsigned octal:[%o]\n", ui);
 	_printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);*/
-	_printf("Character:[%c]\n", 'H');
-	_printf("String:[%s]\n", "I am a string !");
-	/*	_printf("Address:[%p]\n", addr);
+	printf("\n%i\n", len);
+	/*	_printf("String:[%s]\n", "I am a string !");
+		_printf("Address:[%p]\n", addr);
 	len = _printf("Percent:[%%]\n");
 	_printf("Len:[%d]\n", len);
 	_printf("Unknown:[%r]\n");
