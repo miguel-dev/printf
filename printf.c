@@ -79,7 +79,8 @@ int format_i(va_list parameter)
 	j = i;
 	while (j >= 0)
 	{
-		write(1, &a[j], sizeof(char));
+	  if (a[j] != '\0')
+	    write(1, &a[j], sizeof(char));
 		j--;
 	}
 	return (i);
