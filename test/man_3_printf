@@ -1,19 +1,51 @@
-./" This is the manpage of _printf function
-.TH _printf "19/03/19" "VI" "_printf man page"
+.\" This is the manpage of _printf function
+.TH _printf "19/03/19" "V.1" "_printf man page"
 
 .SH NAME
-_printf
+_printf - formatted output conversion
+
+.SH SYNOPSIS
+#include "holberton.h"
+int _printf(const char *format, ...);
+Note: the header "holberton.h" contains another headers of the system like:
+.TP
+#include <stdio.h>
+.TP
+#include <stdlib.h>
+.TP
+#include <stdarg.h>
+.TP
+#include <unistd.h>
 
 .SH DESCRIPTION
-This is our own printf function that performs in a very similar way to the printf function  of c.
+This is our own printf function that performs in a very similar way to the printf function  of C.
+Produce an output according to the format that the user wants, that could be character, string, integer or digit.
+
+.SH FORMAT
+.TP
+character - %c
+.TP
+string - %s
+.TP
+integer - %i
+.TP
+digit(similar to int) - %d
+
+.SH Return value
+
+The function returns the number of characters printed.
 
 .SH OPTIONS
 .IP -
-option
-.IP --
-option2
+No options yet.
 
-.SH SYNOPIS
-touchpad
+.SH BUGS
+In proccess
+
+.SH Example
+Here we get "len" as the number of characters printed, and then our function prints len as a integer and as a digit.
+len = _printf("Let's try to printf a simple sentence.\n");
+_printf("Length:[%d, %i]\n", len, len);
 
 .SH AUTHOR
+written by Miguel Cortés & Nicolás Martínez.
