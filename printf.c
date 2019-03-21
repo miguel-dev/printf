@@ -28,6 +28,12 @@ int format_s(va_list parameter)
 
 	p = va_arg(parameter, char*);
 
+	if (!p)
+	{
+		write(1, "(null)", sizeof(char) * 6);
+		return (6);
+	}
+
 	while (p[i])
 	{
 		write(1, &p[i], sizeof(char));
@@ -126,17 +132,22 @@ int _printf(const char *format, ...)
 	int (*func)(va_list);
 
 	va_start(parameters, format);
-
 	if (!format)
 		return (-1);
-
 	i = 0, n = 0;
-	while (format && format[i])
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			if (!format[i + 1])
 				return (-1);
+
+			if (format[i + 1] != 'c' && format[i + 1] != 's'
+					&& format[i + 1] != 'd' && format[i + 1] != 'i')
+			{
+				n += write(1, &format[i], sizeof(char));
+				n += write(1, &format[i + 1], sizeof(char));
+			}
 
 			func = select_format_func(&format[i + 1]);
 			if (func)
